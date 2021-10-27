@@ -46,7 +46,7 @@ pipeline {
      steps{  
          script {
                 sh """ sudo -u "ec2-user" docker tag "${APP}/${GIT_BRANCH}:${BUILD_NUMBER}" ${ECR_REGISTRY}/${REPOSITORY}:${BUILD_NUMBER} """
-                sh """ sudo -u "ec2-user" docker push ${ECR_REGISTRY}/${REPOSITORY}:${BUILD_NUMBER}" """
+                sh """ sudo -u "ec2-user" docker push ${ECR_REGISTRY}/${REPOSITORY}:${BUILD_NUMBER} """
          }
         }
       }
