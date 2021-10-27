@@ -25,4 +25,6 @@ EXPOSE 80
 
 USER sasquatch
 
+COPY --chown=sasquatch:sasquatch . .
+
 CMD python ./index.py
