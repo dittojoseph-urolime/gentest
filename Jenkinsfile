@@ -60,7 +60,7 @@ pipeline {
 	        OLD_TASK_DEFINITION=\$(sudo -u "ec2-user" aws ecs describe-task-definition --task-definition ${env.TASKFAMILY} --region ${AWS_DEFAULT_REGION})
 	        NEW_TASK_DEFINTIION=\$(sudo -u "ec2-user" echo \$OLD_TASK_DEFINITION | /usr/local/bin/jq --arg IMAGE ${NEW_DOCKER_IMAGE} '.taskDefinition | .containerDefinitions[0].image = \$IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities)')           
 	        NEW_TASK_INFO=\$(sudo -u "ec2-user" aws ecs register-task-definition --region ${AWS_DEFAULT_REGION} --cli-input-json "\$NEW_TASK_DEFINTIION")
-                NEW_REVISION=\$(echo \$NEW_TASK_INFO | jq '.taskDefinition.revision')
+                NEW_REVISION=\$(echo \$NEW_TASK_INFO | /usr/local/bin/jq '.taskDefinition.revision')
                 echo "Updating the service with new TD"
                 sudo -u "ec2-user" aws ecs update-service --cluster ${env.CLUSTERNAME} --service ${env.SERVICENAME} --task-definition ${env.TASKFAMILY}:\$NEW_REVISION --region ${AWS_DEFAULT_REGION}
             	    	    
