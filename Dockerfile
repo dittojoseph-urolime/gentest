@@ -12,7 +12,6 @@ RUN addgroup -S sasquatch
 
 RUN adduser -S sasquatch -G sasquatch
 
-#RUN chown sasquatch:sasquatch -R /app
 
 ENV APACHE_RUN_USER www-data
 
