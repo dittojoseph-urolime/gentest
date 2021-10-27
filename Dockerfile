@@ -1,10 +1,15 @@
 FROM python:3.7-alpine
 
-LABEL maintainer="sasquatch"
-
 COPY . /app
 
 WORKDIR /app
+
+RUN addgroup -S sasquatch
+
+RUN adduser -S sasquatch -G sasquatch
+
+COPY --chown=sasquatch:sasquatch requirements.txt requirements.txt index.py
+
 
 RUN pip install -r requirements.txt
 
@@ -18,5 +23,6 @@ ENV APACHE_LOG_DIR /var/log/apache2
 
 EXPOSE 80
 
+USER sasquatch
 
 CMD python ./index.py
