@@ -8,7 +8,7 @@ RUN addgroup -S sasquatch
 
 RUN adduser -S sasquatch -G sasquatch
 
-COPY --chown=sasquatch:sasquatch requirements.txt requirements.txt index.py
+COPY --chown=sasquatch:sasquatch requirements.txt requirements.txt
 
 
 RUN pip install -r requirements.txt
