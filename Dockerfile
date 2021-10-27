@@ -8,9 +8,9 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-#RUN addgroup -S sasquatch
+RUN addgroup -S sasquatch
 
-#RUN adduser -S sasquatch -G sasquatch
+RUN adduser -S sasquatch -G sasquatch
 
 #RUN chown sasquatch:sasquatch -R /app
 
@@ -22,6 +22,6 @@ ENV APACHE_LOG_DIR /var/log/apache2
 
 EXPOSE 80
 
-#USER sasquatch
+USER sasquatch
 
 CMD python ./index.py
