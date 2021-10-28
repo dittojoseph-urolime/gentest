@@ -7,7 +7,7 @@
         "Properties": {
           "TaskDefinition": "NEW_TD_ARN",
           "LoadBalancerInfo": {
-            "ContainerName": "your-container-name",
+            "ContainerName": "TASKFAMILY",
             "ContainerPort": 80
           }
         }
