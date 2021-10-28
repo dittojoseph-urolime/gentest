@@ -62,7 +62,7 @@ pipeline {
 	        NEW_TASK_INFO=\$(sudo -u "ec2-user" aws ecs register-task-definition --region ${AWS_DEFAULT_REGION} --cli-input-json "\$NEW_TASK_DEFINTIION")
                 NEW_REVISION=\$(echo \$NEW_TASK_INFO | /usr/local/bin/jq '.taskDefinition.revision')
                 echo "Updating the service with new TD"
-                sudo -u "ec2-user" aws ecs update-service --cluster ${env.CLUSTERNAME} --service ${env.SERVICENAME} --task-definition ${env.TASKFAMILY}:\$NEW_REVISION --region ${AWS_DEFAULT_REGION}
+                
             	    	    
                 """
             }
