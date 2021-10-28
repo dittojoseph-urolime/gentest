@@ -1,0 +1,17 @@
+{
+  "version": 0.0,
+  "Resources": [
+    {
+      "TargetService": {
+        "Type": "AWS::ECS::Service",
+        "Properties": {
+          "TaskDefinition": "NEW_TD_ARN",
+          "LoadBalancerInfo": {
+            "ContainerName": "your-container-name",
+            "ContainerPort": 80
+          }
+        }
+      }
+    }
+  ]
+}
