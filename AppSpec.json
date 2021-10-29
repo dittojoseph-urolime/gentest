@@ -5,9 +5,9 @@
       "TargetService": {
         "Type": "AWS::ECS::Service",
         "Properties": {
-          "TaskDefinition": "NEW_TD_ARN",
+          "TaskDefinition": "arn:aws:ecs:us-east-2:857752673193:task-definition/sample-website:12",
           "LoadBalancerInfo": {
-            "ContainerName": "TASKFAMILY",
+            "ContainerName": "sample-website",
             "ContainerPort": 80
           }
         }
