@@ -64,7 +64,6 @@
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "<TASK_DEFINITION>",
   "family": "sample-website",
   "requiresAttributes": [
     {
