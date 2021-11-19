@@ -1,5 +1,11 @@
 version: 0.2
 
+env:
+  variables:
+    AWS_REGION: us-east-2 # checkfor specific region
+    AWS_ACCOUNT_ID: 857752673193
+    IMAGE_NAME: nginx
+
 
 phases:
   pre_build:
@@ -19,13 +25,15 @@ phases:
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker image build -t $IMAGE_NAME .
+      - docker image tag $IMAGE_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:latest
+      - echo image name =  $IMAGE_NAME:latest
+      - echo image url = $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"sample-website","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
-      - cat imageDetail.json 
+      - printf '{"ImageURI":"'"$AWS_ACCOUNT_ID"'.dkr.ecr.'"$AWS_REGION"'.amazonaws.com/'"$IMAGE_NAME"':latest"}' > imageDetail.json
+      - cat imageDetail.json
+      - echo Build completed on `date`
 artifacts:
   files: 
     - 'image*.json'
