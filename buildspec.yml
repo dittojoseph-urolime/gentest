@@ -16,7 +16,7 @@ phases:
       - docker login -u dittojoseph -p 503ad87a-ce6c-4bf1-b47d-072fd2459252
       - REPOSITORY_URI=857752673193.dkr.ecr.us-east-2.amazonaws.com/nginx
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=$(cat $CODEBUILD_SRC_DIR/src/gradle.properties | sed -n 's/systemProp\\.version=\\([0-9\\.]*\\)/\\1/p')
+      - IMAGE_TAG=(cat $CODEBUILD_SRC_DIR/src/gradle.properties | sed -n 's/systemProp\\.version=\\([0-9\\.]*\\)/\\1/p'
   build:
     commands:
       - echo Build started on `date`
