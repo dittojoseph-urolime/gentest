@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - cat $CODEBUILD_SRC_DIR
+      - cat $CODEBUILD_SRC_DIR/src
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - docker login -u dittojoseph -p 503ad87a-ce6c-4bf1-b47d-072fd2459252
       - REPOSITORY_URI=857752673193.dkr.ecr.us-east-2.amazonaws.com/nginx
